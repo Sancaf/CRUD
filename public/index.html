@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" type="text/css" href="./style/style.css">
+   <title>Base de datos</title>
+</head>
+<body>
+    <div id="franja">
+        <img id="image" src="/style/apross.jpg">
+        <a href='addUser.html'><img id="button" src="/style/add.jpeg"></a>
+        <a href='/all_users'><img id="button2" src="/style/change.jpeg"></a>  
+    </div>
+    <div id="searching">
+      <input type="text" id="user" placeholder="Nombre y Apellido" onfocus="this.placeholder=''" onblur="this.placeholder='Nombre y Apellido'" class="usuario">
+      <input type="button" value="Buscar" id="buscar" class="buscar">
+      <input type="text" id="origen" placeholder="origen" onfocus="this.placeholder=''" onblur="this.placeholder='Nombre y Apellido'" class="usuario">
+      <input type="button" value="Buscar" id="buscarorigen" class="buscar">
+    </div>
+ <script> 
+   var input = document.getElementById('user');
+   var input2 = document.getElementById('origen');
+   var buscar = document.getElementById('buscar');
+   var buscar2 = document.getElementById('buscarorigen');
+
+   input.addEventListener('keypress', function(e) {
+     if(event.key === "Enter"){
+      window.location.assign('/users?q=' + input.value);
+     }
+    });
+
+    input2.addEventListener('keypress', function(e) {
+     if(event.key === "Enter"){
+      window.location.assign('/userss?q=' + input2.value);
+     }
+    });
+   
+   buscar.addEventListener('click', function(e) {
+     window.location.assign('/users?q=' + input.value);
+   });
+
+   buscar2.addEventListener('click', function(e) {
+     window.location.assign('/userss?q=' + input2.value);
+   });
+ </script>
+</body>
+</html>

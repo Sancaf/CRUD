@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Base de datos</title>
+    <link rel="stylesheet" type="text/css" href="./style/style.css">   
+</head>
+<body>
+    <div id="franja">
+        <img id="image" src="/style/apross.jpg">
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre y Apellido</th>
+                <th>Origen</th>
+                <th>Empadronamiento</th>
+                <th>Afiliaciones</th>
+                <th>Medicamentos</th>
+            </tr>
+        </thead>
+            <tbody>
+                        <tr>
+                            <td><input type="text" id="nombre" class="add"></td>
+                            <td><input type="text" id="origen" class="add"></td>
+                            <td><input type="text" id="empadronamiento" class="add"></td>
+                            <td><input type="text" id="vacunas" class="add"></td>
+                            <td><input type="text" id="vias_de_excepcion" class="add"></td>
+                        </tr>
+            </tbody>
+    </table>
+    <div id="div">
+        <input type="button" value="Agregar Usuario" id="add_button" class="myButton">
+    </div>
+<script>
+    let addUser = document.getElementById('add_button');
+
+    let nombre = document.getElementById('nombre');
+    let origen = document.getElementById('origen');
+    let empadronamiento = document.getElementById('empadronamiento');
+    let vacunas = document.getElementById('vacunas');
+    let vias_de_excepcion = document.getElementById('vias_de_excepcion');
+
+    addUser.addEventListener('click', function(e) {
+        let data = {
+            nombre: nombre.value,
+            origen: origen.value,
+            empadronamiento: empadronamiento.value,
+            vacunas: vacunas.value,
+            vias_de_excepcion: vias_de_excepcion.value
+        };
+  
+        // let myJson = JSON.stringify(data);
+        // let xhr = new XMLHttpRequest();
+
+        // xhr.open("POST", "http://localhost:3000/users");
+        // xhr.setRequestHeader("content-type", "application/json");
+        // xhr.send(myJson);
+        fetch('http://localhost:3000/users', {
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers:{
+            'Content-Type': 'application/json'
+        }
+        }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
+        
+        alert("usuario agregado exitosamente");
+        window.location.href = 'http://localhost:3000/';
+    });
+</script>
+</body>
+</html>
